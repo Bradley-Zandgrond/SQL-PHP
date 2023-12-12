@@ -23,16 +23,6 @@
             echo "het is nacht";
             break;
     }
-
-    if ($time >= 6 && $time <= 12) {
-        echo "het is ochtend";
-    } elseif ($time > 12 && $time <= 18) {
-        echo "het is middag";
-    } elseif ($time > 18 && $time <= 24) {
-        echo "het is avond";
-    } else {
-        echo "het is nacht";
-    }
 ?>
 </body>
 </html>
