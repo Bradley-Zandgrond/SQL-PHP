@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Print text</title>
 </head>
 <body>
 <?php
@@ -21,12 +21,20 @@ d
 
 function printVertical($text) {
     //code of function
-    echo "text";
+    echo "$text";
+    echo "<br>";
+
+    $len = strlen($text);
+    for ($i=0; $i < $len; $i++) { 
+        echo $text[$i] . "<br>";
+    }
 }
 
 // main
 
 printVertical("abcd");
+
+printVertical("123456789");
 
 ?>
 </body>
