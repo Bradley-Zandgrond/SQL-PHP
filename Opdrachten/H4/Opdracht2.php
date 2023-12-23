@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dagdeel</title>
+    <title>dagdeel case</title>
 </head>
 <body>
 <?php
