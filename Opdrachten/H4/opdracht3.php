@@ -7,8 +7,8 @@
 </head>
 <body>
     <?php
-        $getal1 = 6;
-        $getal2 = 9;
+        $getal1 = 7;
+        $getal2 = 8;
 
         if ($getal1 > $getal2) {
             $answer = $getal1 * 2 + $getal2;
