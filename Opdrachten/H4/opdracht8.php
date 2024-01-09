@@ -19,7 +19,9 @@
         }
         if ($age >= $vote && $votepass == true) {
             echo "You can vote" . "<br>";
-        } else {
+        } elseif ($age >= $vote && $votepass == false) {
+            echo "You are not old enough to vote and you don't have a voting pass";  
+        } elseif ($age < $vote) {
             echo "You are not old enough to vote" . "<br>";
         }
     ?>
