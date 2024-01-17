@@ -18,7 +18,7 @@
 
     var_dump($result)
     // Print de data rij voor rij
-    echo "<br>"
+    echo "<br>";
     foreach ($result as $row) {
         echo $row['Merk'] . " ";
         echo $row['Type'] . " ";
