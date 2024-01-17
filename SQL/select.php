@@ -1,22 +1,22 @@
 <?php
-    //Auteur: Zandgrond
+    // Auteur: Zandgrond
     // Functie: Selecteer data
 
-    //connect database
+    // Connect database
     include "connect.php";
 
     // Maak een query
     $sql = "SELECT * FROM fietsen";
-    // prepare
+    // Prepare
     $stmt = $conn->prepare($sql);
-    // uitvoeren
+    // Uitvoeren
     $stmt->execute();
-    // Ophalen ale data
-    $result = $stmt->fechAll(POD::FETCH_ASSOC);
+    // Ophalen alle data
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // var dump result
+    // Var dump result
+    var_dump($result);
 
-    var_dump($result)
     // Print de data rij voor rij
     echo "<br>";
     foreach ($result as $row) {
