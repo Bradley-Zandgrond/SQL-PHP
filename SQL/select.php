@@ -14,6 +14,8 @@
     // Ophalen ale data
     $result = $stmt->fechAll(POD::FETCH_ASSOC);
 
+    // var dump result
+
     var_dump($result)
     // Print de data rij voor rij
     echo "<br>"
