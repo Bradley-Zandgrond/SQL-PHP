@@ -9,7 +9,7 @@
 <body>
     <h1>Fietsenmaker</h1>
     <img src="ace.jpeg" alt="fietsfoto">
-
+    <a href="insert.php">Toevoegen</a>
     <?php
         include "select_photo.php"
     ?>
