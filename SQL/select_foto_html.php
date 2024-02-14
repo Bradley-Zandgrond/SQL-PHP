@@ -11,7 +11,7 @@
     <img src="ace.jpeg" alt="fietsfoto">
     <a href="insert.php">Toevoegen</a>
     <?php
-        include "select_photo.php"
+        include "crud.php"
     ?>
 </body>
 </html>
