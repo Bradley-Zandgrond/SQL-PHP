@@ -1,38 +1,59 @@
 <?php
-    // auteur: Zandgrond
-    // functie
+//authur: Zandgrond
+include "connect.php";
 
-    if (isset($_GET['id'])){
+if(isset($_POST['save'])) {
+$merk = filter_input(INPUT_POST, "merk", FILTER_SANITIZE_STRING);
+$type = filter_input(INPUT_POST, "type", FILTER_SANITIZE_STRING);
+$prijs = filter_input(INPUT_POST, "prijs", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 
-        echo "Mijn id is:" . $_GET['id'] . "<br>";
+$sql = "UPDATE fietsen SET merk = :merk, type = :type, prijs = :prijs WHERE id = :id";
+$query = $conn->prepare($sql);
+$query->bindParam("merk", $merk);
+$query->bindParam("type", $type);
+$query->bindParam("prijs", $prijs);
+$query->bindParam("id", $_GET['id']);
 
-    }
-    // Connect database
-    include "connect.php";
-
-    // Maak een query
+if($query->execute()) {
+    echo"de nieuwe gegevens zijn toegevoegd";
+} else {
+    echo "er is een fout opgetreden!";
+}
+echo "<br>";
+} else {
     $sql = "SELECT * FROM fietsen WHERE id = :id";
-    // Prepare
-    $stmt = $conn->prepare($sql);
-    // Uitvoeren
-    $stmt->execute([':id'=>$_GET['id']]);
-    // Ophalen alle data
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $query = $conn->prepare($sql);
+    $query->bindParam("id", $_GET['id']);
+    $query->execute();
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($result as &$data) {
+        $merk = $data["merk"];
+        $type = $data["type"];
+        $prijs = $data["prijs"];
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit fiets</title>
+    <title>Document</title>
 </head>
 <body>
-    <h2>Wijzig fiets</h2>
-    <form action="edit_db.php" method="post">
-    <input type="hidden" id="merk" name="id" required value="<?php echo $result['id']?>"><br>
-        <label for="merk"></label>
-        <input type="text" id="merk" name="id" required value="<?php echo $result['merk']?>"><br>
+<form method="post" action="edit_db.php">
+    <label>merk: </label>
+    <input type="text" name="merk" value="<?php echo $merk; ?>"><br>
 
-    </form>
+    <label>type: </label>
+    <input type="text" name="type" value="<?php echo $type; ?>"><br>
+    
+    <label>prijs: </label>
+    <input type="text" name="prijs" value="<?php echo $prijs; ?>"><br>
+
+    <input type="submit" name="save" value="Opslaan">
+</form>
 </body>
 </html>

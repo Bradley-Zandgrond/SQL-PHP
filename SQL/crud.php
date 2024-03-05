@@ -14,12 +14,14 @@
     // Ophalen alle data
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    
+    //print data rij voor rij
+    echo "<br>";
+    echo "<table border=1px>";
 
     // print de header van de tabel
     echo "<tr>
         <th>Merk</th>
-        <th>Type</th>    
+        <th>Prijs</th>    
         <th>Prijs</th>
         <th>Foto</th>
         <th>Edit</th>
@@ -32,8 +34,11 @@
             echo "<td>". $row['merk'] . "</td>";
             echo "<td>". $row['type'] . "</td>";
             echo "<td>". $row['prijs'] . "</td>";
+            echo "<td>". "<img src='/SQL/ace.jpeg'" . $row['foto'] . "</td>";
             echo "<td><a href='edit.php?id=" . $row['id'] . "'>" . "Wijzig</a></td>";
             echo "<td><a href='delete.php?id=" . $row['id'] . "'>" . "Verwijder</a></td>";
         echo "</tr>";
     }
+
+    echo "</table>";
 ?>

@@ -1,8 +1,7 @@
 <?php
 // Genereer een willekeurige postcode
 $rndnmr = mt_rand(1000, 9999);
-$rndltr = mt_rand(A, Z);
-$postcode = $rndnmr . $rndltr;
+$postcode = $rndnmr;
 
 // Toon de willekeurige postcode
 echo "Willekeurige postcode: ".$postcode;
