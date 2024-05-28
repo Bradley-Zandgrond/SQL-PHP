@@ -1,5 +1,5 @@
 <?php
-// auteur: Wigmans
+// auteur: BYZ
 // functie: algemene functies tbv hergebruik
 
 include_once "config.php";
@@ -43,24 +43,24 @@ include_once "config.php";
     return $result;
  }
 
- // selecteer de rij van de opgeven id uit de table fietsen
- function getFiets($id){
+ // selecteer de rij van de opgeven id uit de table suplier
+ function getsuplier($id){
     // Connect database
     $conn = connectDb();
 
     // Select data uit de opgegeven table methode prepare
     $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE id = :id";
     $query = $conn->prepare($sql);
-    $query->execute([':brouwcode'=>$id]);
+    $query->execute([':id'=>$id]);
     $result = $query->fetch();
 
     return $result;
  }
 
 
- function ovzBrouwer(){
+ function ovzsuplier(){
 
-    // Haal alle brouwer record uit de tabel 
+    // Haal alle suplier record uit de tabel 
     $result = getData(CRUD_TABLE);
     
     //print table
@@ -99,27 +99,27 @@ function printTable($result){
 }
 
 
-function crudFietsen(){
+function crudsuplier(){
 
     // Menu-item   insert
     $txt = "
-    <h1>Crud Fietsen</h1>
+    <h1>Crud suplier</h1>
     <nav>
-		<a href='insert_fiets.php'>Toevoegen nieuwe fiets</a>
+		<a href='insert_suplier.php'>Toevoegen nieuwe suplier</a>
     </nav><br>";
     echo $txt;
 
-    // Haal alle fietsen record uit de tabel 
+    // Haal alle suplier record uit de tabel 
     $result = getData(CRUD_TABLE);
 
     //print table
-    printCrudFiets($result);
+    printCrudsuplier($result);
     
  }
 
-// Function 'printCrudFiets' print een HTML-table met data uit $result 
+// Function 'printCrudsuplier' print een HTML-table met data uit $result 
 // en een wzg- en -verwijder-knop.
-function printCrudFiets($result){
+function printCrudsuplier($result){
     // Zet de hele table in een variable en print hem 1 keer 
     $table = "<table>";
 
@@ -146,13 +146,13 @@ function printCrudFiets($result){
         
         // Wijzig knopje
         $table .= "<td>
-            <form method='post' action='update_fiets.php?id=$row[id]' >       
+            <form method='post' action='update_suplier.php?id=$row[id]' >       
                 <button>Wzg</button>	 
             </form></td>";
 
         // Delete knopje
         $table .= "<td>
-            <form method='post' action='delete_fiets.php?id=$row[id]' >       
+            <form method='post' action='delete_suplier.php?id=$row[id]' >       
                 <button>Verwijder</button>	 
             </form></td>";
 
@@ -164,7 +164,7 @@ function printCrudFiets($result){
 }
 
 
-function updateFiets($row){
+function updatesuplier($row){
 
     // Maak database connectie
     $conn = connectDb();
@@ -172,9 +172,9 @@ function updateFiets($row){
     // Maak een query 
     $sql = "UPDATE " . CRUD_TABLE .
     " SET 
-        merk = :merk, 
-        type = :type, 
-        prijs = :prijs
+        suplier_name = :suplier_name, 
+        Email = :Email, 
+        country = :country
     WHERE id = :id
     ";
 
@@ -182,9 +182,9 @@ function updateFiets($row){
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$row['merk'],
-        ':type'=>$row['type'],
-        ':prijs'=>$row['prijs'],
+        ':suplier_name'=>$row['suplier_name'],
+        ':Email'=>$row['Email'],
+        ':country'=>$row['country'],
         ':id'=>$row['id']
     ]);
 
@@ -193,23 +193,23 @@ function updateFiets($row){
     return $retVal;
 }
 
-function insertFiets($post){
+function insertsuplier($post){
     // Maak database connectie
     $conn = connectDb();
 
     // Maak een query 
     $sql = "
-        INSERT INTO " . CRUD_TABLE . " (merk, type, prijs)
-        VALUES (:merk, :type, :prijs) 
+        INSERT INTO " . CRUD_TABLE . " (suplier_name, Email, country)
+        VALUES (:suplier_name, :Email, :country) 
     ";
 
     // Prepare query
     $stmt = $conn->prepare($sql);
     // Uitvoeren
     $stmt->execute([
-        ':merk'=>$_POST['merk'],
-        ':type'=>$_POST['type'],
-        ':prijs'=>$_POST['prijs']
+        ':suplier_name'=>$_POST['suplier_name'],
+        ':Email'=>$_POST['Email'],
+        ':country'=>$_POST['country']
     ]);
 
     
@@ -218,7 +218,7 @@ function insertFiets($post){
     return $retVal;  
 }
 
-function deleteFiets($id){
+function deletesuplier($id){
 
     // Connect database
     $conn = connectDb();
